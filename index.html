@@ -218,7 +218,7 @@ document.getElementById('pwModal').addEventListener('click',function(e){if(e.tar
 
 function rb(){
 let h='<div class="bt'+(cb===null?' on':'')+'" onclick="sb(null)">'+t('all')+'</div>';
-B.forEach(([n,c])=>{if(c>=5)h+='<div class="bt'+(cb===n?' on':'')+'" onclick="sb(''+n.replace(/'/g,"\\'")+'')">'+n+'<span class="c">('+c+')</span></div>'});
+B.forEach(([n,c])=>{if(c>=5){const en=n.replace(/'/g,"\\'");h+=`<div class="bt${cb===n?' on':''}" onclick="sb('${en}')">${esc(n)}<span class="c">(${c})</span></div>`}});
 document.getElementById('bts').innerHTML=h}
 
 function tgl(){be=!be;document.getElementById('bts').style.display=be?'flex':'none';document.getElementById('tbn').textContent=be?t('collapseBrands'):t('expandBrands')}
@@ -248,7 +248,7 @@ if(!total){document.getElementById('pl').innerHTML='<div class="nr"><div class="
 const q=cs.trim().toLowerCase();
 let h='';pd.forEach(d=>{
 var imgHtml;
-if(BI[d.b]){imgHtml='<a class="img-link" href="https://search.jd.com/Search?keyword='+encodeURIComponent(d.n)+'" target="_blank"><img class="prod-img" src="'+BI[d.b]+'" alt="'+esc(d.b)+'" loading="lazy" onerror="this.parentElement.innerHTML=\'<div class=ph>'+esc(d.b)[0]+'</div>\'"></a>'}
+if(BI[d.b]){imgHtml='<a class="img-link" href="https://search.jd.com/Search?keyword='+encodeURIComponent(d.n)+'" target="_blank"><img class="prod-img" src="'+BI[d.b]+'" alt="'+esc(d.b)+'" loading="lazy" onerror="this.style.display=&quot;none&quot;;this.parentElement.innerHTML=&quot;<div class=ph>'+esc(d.b)[0]+'</div>&quot;"></a>'}
 else{var c=hashColor(d.b);imgHtml='<a class="img-link" href="https://search.jd.com/Search?keyword='+encodeURIComponent(d.n)+'" target="_blank" style="background:'+c+'"><div class="ph">'+esc(d.b)[0]+'</div></a>'}
 
 var priceHtml;
